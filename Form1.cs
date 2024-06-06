@@ -26,9 +26,13 @@ namespace Aula20240606AgendaTelefonica
 
                 SqlDataReader leitorDados = selectCmd.ExecuteReader();
 
-                while (leitorDados.Read()) {
+                while (leitorDados.Read()) 
+                {
+                    /*Console.WriteLine("Nome: " + leitorDados["Nome"] + "Sobrenome: " + leitorDados["Sobrenome"]);
 
-                    //leitorDados["Nome"]
+                    dataGridView1.DataSource.Add();*/
+                    
+
                 }
 
             }
@@ -36,7 +40,8 @@ namespace Aula20240606AgendaTelefonica
             {
                 Console.WriteLine(ex.Message);
             }
-            finally {
+            finally 
+            {
                 conexao.Close();
             }
 
