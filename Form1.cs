@@ -14,6 +14,7 @@ namespace Aula20240606AgendaTelefonica
     public partial class Form1 : Form
     {
         SqlConnection conexao;
+        public List<Contato> contatoList;
         public Form1()
         {
             InitializeComponent();
@@ -28,12 +29,12 @@ namespace Aula20240606AgendaTelefonica
 
                 while (leitorDados.Read()) 
                 {
-                    /*Console.WriteLine("Nome: " + leitorDados["Nome"] + "Sobrenome: " + leitorDados["Sobrenome"]);
-
-                    dataGridView1.DataSource.Add();*/
-                    
-
+                    /*Console.WriteLine("Nome: " + leitorDados["Nome"] + "Sobrenome: " + leitorDados["Sobrenome"]);*/
+                    int proxID = contatoList.Count() + 1;
+                    Contato aux = new Contato(proxID, (String)leitorDados["Nome"], (String)leitorDados["Telefone"]);
+                    contatoList.Add(aux);
                 }
+                dataGridView1.DataSource = contatoList;
 
             }
             catch (Exception ex)
