@@ -8,15 +8,19 @@ namespace Aula20240606AgendaTelefonica
 {
     public class Contato
     {
-        public int Id { get; set; }
-        public string Nome { get; set; }
-        public string Telefone { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public string telefone { get; set; }
 
-        public Contato (int id, string nome, string telefone)
+        public Contato(int id, string name, string telefone)
         {
-            this.Id = id;
-            this.Nome = nome;
-            this.Telefone = telefone;
+            this.id = id;
+            this.name = name;
+            this.telefone = telefone;
+        }
+
+        public Contato()
+        {
         }
     }
 }

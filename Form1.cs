@@ -14,11 +14,38 @@ namespace Aula20240606AgendaTelefonica
     public partial class Form1 : Form
     {
         SqlConnection conexao;
-        public List<Contato> contatoList;
+        public List<Contato> agenda;
         public Form1()
         {
             InitializeComponent();
+            agenda = new List<Contato>();
             conexao = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Aula20240606;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+
+            AtualizaLista();
+
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+
+            AtualizaLista();
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AtualizaLista()
+        {
             try
             {
                 conexao.Open();
@@ -27,36 +54,28 @@ namespace Aula20240606AgendaTelefonica
 
                 SqlDataReader leitorDados = selectCmd.ExecuteReader();
 
-                while (leitorDados.Read()) 
+                while (leitorDados.Read())
                 {
-                    /*Console.WriteLine("Nome: " + leitorDados["Nome"] + "Sobrenome: " + leitorDados["Sobrenome"]);*/
-                    int proxID = contatoList.Count() + 1;
-                    Contato aux = new Contato(proxID, (String)leitorDados["Nome"], (String)leitorDados["Telefone"]);
-                    contatoList.Add(aux);
-                }
-                dataGridView1.DataSource = contatoList;
 
+                    Contato c = new Contato();
+                    c.id = Convert.ToInt32(leitorDados["Id"]);
+                    c.name = Convert.ToString(leitorDados["Nome"]);
+                    c.telefone = Convert.ToString(leitorDados["Telefone"]);
+
+                    agenda.Add(c);
+
+                }
+                MessageBox.Show("FOi;");
             }
             catch (Exception ex)
             {
+                MessageBox.Show("ERRo");
                 Console.WriteLine(ex.Message);
             }
-            finally 
+            finally
             {
                 conexao.Close();
             }
-
-            
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
